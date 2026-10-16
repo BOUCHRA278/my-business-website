@@ -1,7 +1,7 @@
 
 /* ==========================================
    THE COZY TOUCH
-   FINAL JAVASCRIPT - LESSON 9
+   FINAL JAVASCRIPT - LESSON 10
 ========================================== */
 
 
@@ -20,7 +20,9 @@ try {
     if (Array.isArray(savedCart)) {
         cart = savedCart.filter(function(item) {
             return (
+                item !== null &&
                 typeof item.name === "string" &&
+                typeof item.price === "number" &&
                 Number.isFinite(item.price) &&
                 item.price >= 0 &&
                 Number.isInteger(item.quantity) &&
@@ -28,6 +30,7 @@ try {
             );
         });
     }
+
 } catch (error) {
     cart = [];
 }
@@ -47,7 +50,28 @@ function saveCart() {
 }
 
 
-// Add products to shopping cart
+// Add a product to the shopping cart
+function addProductToCart(name, price) {
+
+    const existingProduct = cart.find(function(product) {
+        return product.name === name;
+    });
+
+    if (existingProduct) {
+        existingProduct.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    updateCart();
+}
+
+
+// Add products using the normal Add to Cart buttons
 document.querySelectorAll(".product-button").forEach(function(button) {
 
     button.addEventListener("click", function() {
@@ -55,21 +79,7 @@ document.querySelectorAll(".product-button").forEach(function(button) {
         const name = button.dataset.name;
         const price = Number(button.dataset.price);
 
-        const existingProduct = cart.find(function(product) {
-            return product.name === name;
-        });
-
-        if (existingProduct) {
-            existingProduct.quantity++;
-        } else {
-            cart.push({
-                name: name,
-                price: price,
-                quantity: 1
-            });
-        }
-
-        updateCart();
+        addProductToCart(name, price);
     });
 });
 
@@ -103,8 +113,10 @@ function updateCart() {
     let quantity = 0;
 
     if (cart.length === 0) {
+
         const message = document.createElement("p");
         message.textContent = "Your cart is empty.";
+
         cartItems.appendChild(message);
     }
 
@@ -113,6 +125,7 @@ function updateCart() {
         const row = document.createElement("div");
         row.className = "cart-item";
 
+        // Product information
         const info = document.createElement("div");
 
         const name = document.createElement("strong");
@@ -125,6 +138,7 @@ function updateCart() {
         info.appendChild(name);
         info.appendChild(price);
 
+        // Quantity controls
         const controls = document.createElement("div");
         controls.className = "quantity-controls";
 
@@ -132,6 +146,7 @@ function updateCart() {
         const minus = document.createElement("button");
         minus.type = "button";
         minus.textContent = "-";
+
         minus.setAttribute(
             "aria-label",
             "Decrease " + product.name
@@ -149,6 +164,7 @@ function updateCart() {
         const plus = document.createElement("button");
         plus.type = "button";
         plus.textContent = "+";
+
         plus.setAttribute(
             "aria-label",
             "Increase " + product.name
@@ -169,28 +185,32 @@ function updateCart() {
 
         controls.append(minus, count, plus, remove);
         row.append(info, controls);
+
         cartItems.appendChild(row);
 
         total += product.price * product.quantity;
         quantity += product.quantity;
     });
 
+    // Update totals
     cartCount.textContent = quantity;
     totalItems.textContent = quantity;
     cartTotal.textContent = total.toFixed(2);
 
+    // Save changes
     saveCart();
 }
 
 
 // Clear shopping cart
 clearButton.addEventListener("click", function() {
+
     cart = [];
     updateCart();
 });
 
 
-// Display saved cart
+// Display saved cart when page loads
 updateCart();
 
 
@@ -199,8 +219,9 @@ updateCart();
    LESSON 8 - WHATSAPP ORDERING SYSTEM
 ========================================== */
 
-// Replace with your business WhatsApp number.
+// Business WhatsApp number
 // Use country code without + or spaces.
+// Only use a number intended for public business contact.
 const businessWhatsApp = "96176552059";
 
 const whatsappButton =
@@ -216,15 +237,19 @@ whatsappButton.addEventListener("click", function() {
 
     // Check if cart is empty
     if (cart.length === 0) {
+
         orderFeedback.textContent =
             "Please add products to your cart first.";
+
         return;
     }
 
     // Check WhatsApp number
     if (!/^\d{8,15}$/.test(businessWhatsApp)) {
+
         orderFeedback.textContent =
             "Please configure the business WhatsApp number.";
+
         return;
     }
 
@@ -269,15 +294,12 @@ whatsappButton.addEventListener("click", function() {
     message +=
         "\n\nPlease confirm availability and the final price.";
 
-    // Encode order message
-    const encodedMessage = encodeURIComponent(message);
-
     // Create WhatsApp link
     const whatsappURL =
         "https://wa.me/" +
         businessWhatsApp +
         "?text=" +
-        encodedMessage;
+        encodeURIComponent(message);
 
     // Open WhatsApp
     const newWindow = window.open(
@@ -288,7 +310,7 @@ whatsappButton.addEventListener("click", function() {
 
     if (!newWindow) {
         orderFeedback.textContent =
-            "Please allow pop-ups to open WhatsApp.";
+            "If WhatsApp did not open, please allow pop-ups.";
     }
 });
 
@@ -340,9 +362,12 @@ function filterProducts() {
             productCategory === selectedCategory;
 
         if (matchesSearch && matchesCategory) {
+
             card.hidden = false;
             visibleProducts++;
+
         } else {
+
             card.hidden = true;
         }
     });
@@ -400,4 +425,177 @@ contactForm.addEventListener("submit", function(event) {
         "Thank you! This is a demo form. Your message has not been sent.";
 
     contactForm.reset();
+});
+
+
+
+/* ==========================================
+   LESSON 10 - PRODUCT DETAILS POPUP
+========================================== */
+
+// Find popup elements
+const productModal =
+    document.getElementById("product-modal");
+
+const modalImage =
+    document.getElementById("modal-image");
+
+const modalName =
+    document.getElementById("modal-name");
+
+const modalDescription =
+    document.getElementById("modal-description");
+
+const modalPrice =
+    document.getElementById("modal-price");
+
+const closeModalButton =
+    document.getElementById("close-modal");
+
+const modalAddCart =
+    document.getElementById("modal-add-cart");
+
+
+// Store the selected product
+let selectedProduct = null;
+let previousFocus = null;
+
+
+// Open product details
+document.querySelectorAll(".details-button").forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        // Find the product card
+        const card = button.closest(".product-card");
+
+        // Find product information
+        const image = card.querySelector("img");
+        const name = card.querySelector("h3").textContent;
+
+        const cartButton =
+            card.querySelector(".product-button");
+
+        const price = Number(cartButton.dataset.price);
+
+        // Save selected product
+        selectedProduct = {
+            name: name,
+            price: price
+        };
+
+        // Display product information
+        modalImage.src = image.src;
+        modalImage.alt = image.alt;
+
+        modalName.textContent = name;
+
+        modalDescription.textContent =
+            button.dataset.description;
+
+        modalPrice.textContent =
+            "$" + price.toFixed(2);
+
+        // Remember where keyboard focus was
+        previousFocus = document.activeElement;
+
+        // Show popup
+        productModal.hidden = false;
+
+        // Prevent scrolling behind popup
+        document.body.classList.add("modal-open");
+
+        // Focus close button
+        closeModalButton.focus();
+    });
+});
+
+
+// Close product details
+function closeProductModal() {
+
+    productModal.hidden = true;
+
+    document.body.classList.remove("modal-open");
+
+    selectedProduct = null;
+
+    // Return focus to the View Details button
+    if (previousFocus) {
+        previousFocus.focus();
+    }
+}
+
+
+// Close popup using X button
+closeModalButton.addEventListener(
+    "click",
+    closeProductModal
+);
+
+
+// Close popup when clicking outside
+productModal.addEventListener("click", function(event) {
+
+    if (event.target === productModal) {
+        closeProductModal();
+    }
+});
+
+
+// Close popup with Escape key
+document.addEventListener("keydown", function(event) {
+
+    if (productModal.hidden) {
+        return;
+    }
+
+    if (event.key === "Escape") {
+        closeProductModal();
+        return;
+    }
+
+    // Keep keyboard focus inside popup
+    if (event.key === "Tab") {
+
+        const focusableElements = [
+            closeModalButton,
+            modalAddCart
+        ];
+
+        const currentIndex =
+            focusableElements.indexOf(document.activeElement);
+
+        if (event.shiftKey && currentIndex <= 0) {
+
+            event.preventDefault();
+            modalAddCart.focus();
+
+        } else if (
+            !event.shiftKey &&
+            currentIndex === 1
+        ) {
+
+            event.preventDefault();
+            closeModalButton.focus();
+        }
+    }
+});
+
+
+// Add selected product to cart from popup
+modalAddCart.addEventListener("click", function() {
+
+    if (!selectedProduct) {
+        return;
+    }
+
+    // Reuse the existing shopping cart function
+    addProductToCart(
+        selectedProduct.name,
+        selectedProduct.price
+    );
+
+    // Close popup after adding product
+    closeProductModal();
 });

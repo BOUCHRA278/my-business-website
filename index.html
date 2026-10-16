@@ -13,9 +13,14 @@
 
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- ======================================
+         NAVIGATION
+    ======================================= -->
     <nav class="navbar">
-        <a href="#home" class="logo">The Cozy Touch</a>
+
+        <a href="#home" class="logo">
+            The Cozy Touch
+        </a>
 
         <div class="nav-links">
             <a href="#home">Home</a>
@@ -27,11 +32,15 @@
                 Cart (<span id="cart-count">0</span>)
             </a>
         </div>
+
     </nav>
 
 
-    <!-- HERO SECTION -->
+    <!-- ======================================
+         HERO SECTION
+    ======================================= -->
     <header id="home" class="hero">
+
         <div class="hero-content">
 
             <p class="eyebrow">
@@ -53,10 +62,13 @@
             </a>
 
         </div>
+
     </header>
 
 
-    <!-- PRODUCT SECTION -->
+    <!-- ======================================
+         SHOP SECTION
+    ======================================= -->
     <section id="shop" class="products">
 
         <h2>Our Featured Products</h2>
@@ -66,7 +78,7 @@
         </p>
 
 
-        <!-- LESSON 9: PRODUCT SEARCH AND FILTERS -->
+        <!-- LESSON 9: SEARCH AND FILTERS -->
         <div class="shop-controls">
 
             <input
@@ -106,13 +118,18 @@
 
         </div>
 
+
+        <!-- NO PRODUCTS MESSAGE -->
         <p id="no-products" hidden>
             No products found. Try another search!
         </p>
 
 
-        <!-- PRODUCT CONTAINER -->
+        <!-- ==================================
+             PRODUCT CONTAINER
+        =================================== -->
         <div class="product-container">
+
 
             <!-- PRODUCT 1: LAVENDER CANDLE -->
             <article
@@ -131,9 +148,19 @@
 
                     <p class="price">$18.00</p>
 
+                    <!-- LESSON 10: VIEW DETAILS -->
                     <button
-                        class="button product-button"
                         type="button"
+                        class="details-button"
+                        data-description="A handmade lavender candle designed to bring warmth and relaxation to your home."
+                    >
+                        View Details
+                    </button>
+
+                    <!-- ADD TO CART -->
+                    <button
+                        type="button"
+                        class="button product-button"
                         data-name="Lavender Candle"
                         data-price="18"
                     >
@@ -141,6 +168,7 @@
                     </button>
 
                 </div>
+
             </article>
 
 
@@ -161,9 +189,19 @@
 
                     <p class="price">$16.00</p>
 
+                    <!-- LESSON 10: VIEW DETAILS -->
                     <button
-                        class="button product-button"
                         type="button"
+                        class="details-button"
+                        data-description="A beautiful handmade vanilla candle, perfect for creating a cozy atmosphere."
+                    >
+                        View Details
+                    </button>
+
+                    <!-- ADD TO CART -->
+                    <button
+                        type="button"
+                        class="button product-button"
                         data-name="Vanilla Candle"
                         data-price="16"
                     >
@@ -171,6 +209,7 @@
                     </button>
 
                 </div>
+
             </article>
 
 
@@ -191,9 +230,19 @@
 
                     <p class="price">$24.00</p>
 
+                    <!-- LESSON 10: VIEW DETAILS -->
                     <button
-                        class="button product-button"
                         type="button"
+                        class="details-button"
+                        data-description="A decorative handmade gypsum tray, perfect for candles, accessories, and gifts."
+                    >
+                        View Details
+                    </button>
+
+                    <!-- ADD TO CART -->
+                    <button
+                        type="button"
+                        class="button product-button"
                         data-name="Decorative Tray"
                         data-price="24"
                     >
@@ -201,6 +250,7 @@
                     </button>
 
                 </div>
+
             </article>
 
         </div>
@@ -208,7 +258,9 @@
     </section>
 
 
-    <!-- ABOUT SECTION -->
+    <!-- ======================================
+         ABOUT SECTION
+    ======================================= -->
     <section id="about" class="about">
 
         <img
@@ -233,15 +285,20 @@
             </a>
 
         </div>
+
     </section>
 
 
-    <!-- CONTACT SECTION -->
+    <!-- ======================================
+         CONTACT SECTION
+    ======================================= -->
     <section id="contact" class="contact">
 
         <h2>Contact Us</h2>
 
-        <p>Have a question? Send us a message!</p>
+        <p>
+            Have a question? Send us a message!
+        </p>
 
         <form id="contact-form">
 
@@ -277,17 +334,26 @@
                 required
             ></textarea>
 
-            <button class="button" type="submit">
+            <button
+                type="submit"
+                class="button"
+            >
                 Send Message
             </button>
 
-            <p id="form-feedback" role="status"></p>
+            <p
+                id="form-feedback"
+                role="status"
+            ></p>
 
         </form>
+
     </section>
 
 
-    <!-- ADVANCED SHOPPING CART -->
+    <!-- ======================================
+         LESSON 7: ADVANCED SHOPPING CART
+    ======================================= -->
     <section id="cart" class="cart-section">
 
         <h2>Your Shopping Cart</h2>
@@ -296,6 +362,8 @@
             Review your handmade products before ordering.
         </p>
 
+
+        <!-- CART ITEMS -->
         <div id="cart-items">
             <p>Your cart is empty.</p>
         </div>
@@ -310,21 +378,26 @@
             </p>
 
             <h3>
-                Total: $<span id="cart-total">0.00</span>
+                Total:
+                $<span id="cart-total">0.00</span>
             </h3>
 
         </div>
 
+
+        <!-- CLEAR CART -->
         <button
+            type="button"
             id="clear-cart"
             class="button"
-            type="button"
         >
             Clear Cart
         </button>
 
 
-        <!-- LESSON 8: WHATSAPP ORDER FORM -->
+        <!-- ==================================
+             LESSON 8: WHATSAPP ORDER FORM
+        =================================== -->
         <div class="order-form">
 
             <h3>Complete Your Order</h3>
@@ -361,23 +434,96 @@
                 Send Order via WhatsApp
             </button>
 
-            <p id="order-feedback" role="status"></p>
+            <p
+                id="order-feedback"
+                role="status"
+            ></p>
 
         </div>
 
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- ======================================
+         LESSON 10: PRODUCT DETAILS POPUP
+    ======================================= -->
+    <div
+        id="product-modal"
+        class="product-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-name"
+        hidden
+    >
+
+        <div class="modal-content">
+
+            <!-- CLOSE POPUP -->
+            <button
+                type="button"
+                id="close-modal"
+                class="close-modal"
+                aria-label="Close product details"
+            >
+                &times;
+            </button>
+
+
+            <!-- LARGE PRODUCT IMAGE -->
+            <img
+                id="modal-image"
+                src="images/candle.jpeg"
+                alt="Selected handmade product"
+            >
+
+
+            <!-- PRODUCT INFORMATION -->
+            <div class="modal-info">
+
+                <h2 id="modal-name">
+                    Product Name
+                </h2>
+
+                <p id="modal-description">
+                    Product description.
+                </p>
+
+                <h3 id="modal-price">
+                    $0.00
+                </h3>
+
+                <!-- ADD TO CART FROM POPUP -->
+                <button
+                    type="button"
+                    id="modal-add-cart"
+                    class="button"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
     <footer>
+
         <p>
             &copy; 2026 The Cozy Touch.
             Handmade with love.
         </p>
+
     </footer>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- ======================================
+         JAVASCRIPT CONNECTION
+    ======================================= -->
     <script src="script.js"></script>
 
 </body>

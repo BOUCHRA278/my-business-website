@@ -1,7 +1,7 @@
 
 /* ==========================================
    THE COZY TOUCH
-   FINAL CSS - LESSON 9
+   FINAL CSS - LESSON 10
 ========================================== */
 
 
@@ -286,7 +286,7 @@ p {
     color: white;
 }
 
-/* Hide products when filtered */
+/* Hide filtered products */
 
 .product-card[hidden],
 #no-products[hidden] {
@@ -554,7 +554,157 @@ footer p {
 
 
 /* ==========================================
-   12. RESPONSIVE DESIGN - TABLETS
+   12. LESSON 10 - PRODUCT DETAILS POPUP
+========================================== */
+
+/* View Details button */
+
+.details-button {
+    display: inline-block;
+    padding: 12px 18px;
+    margin: 5px 8px 5px 0;
+
+    background-color: transparent;
+    color: #172f27;
+
+    border: 1px solid #172f27;
+    border-radius: 30px;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.details-button:hover {
+    background-color: #172f27;
+    color: white;
+}
+
+/* Keep modal hidden until JavaScript opens it */
+
+.product-modal[hidden] {
+    display: none !important;
+}
+
+/* Dark overlay behind popup */
+
+.product-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background-color: rgba(0, 0, 0, 0.65);
+
+    overflow-y: auto;
+}
+
+/* Popup content */
+
+.modal-content {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+
+    width: 100%;
+    max-width: 850px;
+    max-height: calc(100vh - 40px);
+
+    margin: auto;
+    padding: 30px;
+
+    background-color: #fffdf9;
+    border-radius: 16px;
+
+    overflow-y: auto;
+
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+/* Large product image */
+
+#modal-image {
+    display: block;
+    width: 100%;
+    height: 350px;
+
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Product information */
+
+.modal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-info h2 {
+    color: #243b32;
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+#modal-description {
+    color: #646a60;
+    font-size: 16px;
+}
+
+#modal-price {
+    color: #94723a;
+    font-size: 25px;
+}
+
+#modal-add-cart {
+    align-self: flex-start;
+}
+
+/* Close popup button */
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    background-color: #172f27;
+    color: white;
+
+    border: none;
+    border-radius: 50%;
+
+    font-size: 26px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.close-modal:hover {
+    background-color: #3b5c4b;
+}
+
+/* Prevent scrolling behind popup */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   13. RESPONSIVE DESIGN - TABLETS
 ========================================== */
 
 @media (max-width: 768px) {
@@ -589,8 +739,29 @@ footer p {
 
 
 /* ==========================================
-   13. RESPONSIVE DESIGN - MOBILE
+   14. RESPONSIVE DESIGN - MOBILE
 ========================================== */
+
+@media (max-width: 650px) {
+
+    .modal-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    #modal-image {
+        height: 240px;
+    }
+
+    .modal-info h2 {
+        font-size: 25px;
+    }
+
+    #modal-add-cart {
+        width: 100%;
+    }
+}
 
 @media (max-width: 600px) {
 
