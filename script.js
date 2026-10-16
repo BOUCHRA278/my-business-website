@@ -1,11 +1,21 @@
 
-// LESSON 7 - ADVANCED SHOPPING CART
+/* ==========================================
+   THE COZY TOUCH
+   FINAL JAVASCRIPT - LESSON 9
+========================================== */
 
-// 1. Load the saved cart or start with an empty cart
+
+/* ==========================================
+   LESSON 7 - ADVANCED SHOPPING CART
+========================================== */
+
+// Load saved shopping cart
 let cart = [];
 
 try {
-    const savedCart = JSON.parse(localStorage.getItem("cozyCart"));
+    const savedCart = JSON.parse(
+        localStorage.getItem("cozyCart")
+    );
 
     if (Array.isArray(savedCart)) {
         cart = savedCart.filter(function(item) {
@@ -22,19 +32,22 @@ try {
     cart = [];
 }
 
-// 2. Find the HTML elements
+
+// Find shopping cart elements
 const cartCount = document.getElementById("cart-count");
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 const totalItems = document.getElementById("total-items");
 const clearButton = document.getElementById("clear-cart");
 
-// 3. Save the cart in the browser
+
+// Save shopping cart
 function saveCart() {
     localStorage.setItem("cozyCart", JSON.stringify(cart));
 }
 
-// 4. Add products to the cart
+
+// Add products to shopping cart
 document.querySelectorAll(".product-button").forEach(function(button) {
 
     button.addEventListener("click", function() {
@@ -58,11 +71,12 @@ document.querySelectorAll(".product-button").forEach(function(button) {
 
         updateCart();
     });
-
 });
 
-// 5. Increase or decrease product quantity
+
+// Increase or decrease quantity
 function changeQuantity(index, amount) {
+
     cart[index].quantity += amount;
 
     if (cart[index].quantity <= 0) {
@@ -72,13 +86,15 @@ function changeQuantity(index, amount) {
     updateCart();
 }
 
-// 6. Remove one product completely
+
+// Remove product
 function removeProduct(index) {
     cart.splice(index, 1);
     updateCart();
 }
 
-// 7. Display the shopping cart
+
+// Update shopping cart
 function updateCart() {
 
     cartItems.replaceChildren();
@@ -112,28 +128,41 @@ function updateCart() {
         const controls = document.createElement("div");
         controls.className = "quantity-controls";
 
+        // Decrease quantity
         const minus = document.createElement("button");
-        minus.textContent = "-";
         minus.type = "button";
-        minus.setAttribute("aria-label", "Decrease " + product.name);
+        minus.textContent = "-";
+        minus.setAttribute(
+            "aria-label",
+            "Decrease " + product.name
+        );
+
         minus.addEventListener("click", function() {
             changeQuantity(index, -1);
         });
 
+        // Display quantity
         const count = document.createElement("span");
         count.textContent = product.quantity;
 
+        // Increase quantity
         const plus = document.createElement("button");
-        plus.textContent = "+";
         plus.type = "button";
-        plus.setAttribute("aria-label", "Increase " + product.name);
+        plus.textContent = "+";
+        plus.setAttribute(
+            "aria-label",
+            "Increase " + product.name
+        );
+
         plus.addEventListener("click", function() {
             changeQuantity(index, 1);
         });
 
+        // Remove product
         const remove = document.createElement("button");
-        remove.textContent = "Remove";
         remove.type = "button";
+        remove.textContent = "Remove";
+
         remove.addEventListener("click", function() {
             removeProduct(index);
         });
@@ -153,34 +182,46 @@ function updateCart() {
     saveCart();
 }
 
-// 8. Clear the cart
+
+// Clear shopping cart
 clearButton.addEventListener("click", function() {
     cart = [];
     updateCart();
 });
 
-// 9. Display saved products when the page loads
+
+// Display saved cart
 updateCart();
 
-// LESSON 8 - WHATSAPP ORDERING SYSTEM
 
-// Replace this with your business WhatsApp number.
-// Use international format without + or spaces.
+
+/* ==========================================
+   LESSON 8 - WHATSAPP ORDERING SYSTEM
+========================================== */
+
+// Replace with your business WhatsApp number.
+// Use country code without + or spaces.
 const businessWhatsApp = "96176552059";
 
-const whatsappButton = document.getElementById("whatsapp-order");
-const orderFeedback = document.getElementById("order-feedback");
+const whatsappButton =
+    document.getElementById("whatsapp-order");
+
+const orderFeedback =
+    document.getElementById("order-feedback");
+
 
 whatsappButton.addEventListener("click", function() {
 
-    // Check if the shopping cart is empty
+    orderFeedback.textContent = "";
+
+    // Check if cart is empty
     if (cart.length === 0) {
         orderFeedback.textContent =
             "Please add products to your cart first.";
         return;
     }
 
-    // Check if the business number has been configured
+    // Check WhatsApp number
     if (!/^\d{8,15}$/.test(businessWhatsApp)) {
         orderFeedback.textContent =
             "Please configure the business WhatsApp number.";
@@ -194,8 +235,9 @@ whatsappButton.addEventListener("click", function() {
     const orderNotes =
         document.getElementById("order-notes").value.trim();
 
-    // Build the order message
-    let message = "Hello! I would like to place an order from The Cozy Touch.\n\n";
+    // Prepare order message
+    let message =
+        "Hello! I would like to place an order from The Cozy Touch.\n\n";
 
     message += "ORDER DETAILS:\n";
 
@@ -203,7 +245,8 @@ whatsappButton.addEventListener("click", function() {
 
     cart.forEach(function(product) {
 
-        const subtotal = product.price * product.quantity;
+        const subtotal =
+            product.price * product.quantity;
 
         message +=
             product.name +
@@ -223,19 +266,20 @@ whatsappButton.addEventListener("click", function() {
         message += "\nSpecial Instructions: " + orderNotes;
     }
 
-    message += "\n\nPlease confirm availability and the final price.";
+    message +=
+        "\n\nPlease confirm availability and the final price.";
 
-    // Encode the message for use in a URL
+    // Encode order message
     const encodedMessage = encodeURIComponent(message);
 
-    // Build the WhatsApp URL
+    // Create WhatsApp link
     const whatsappURL =
         "https://wa.me/" +
         businessWhatsApp +
         "?text=" +
         encodedMessage;
 
-    // Open WhatsApp in a new tab
+    // Open WhatsApp
     const newWindow = window.open(
         whatsappURL,
         "_blank",
@@ -246,4 +290,114 @@ whatsappButton.addEventListener("click", function() {
         orderFeedback.textContent =
             "Please allow pop-ups to open WhatsApp.";
     }
+});
+
+
+
+/* ==========================================
+   LESSON 9 - PRODUCT SEARCH AND FILTERS
+========================================== */
+
+// Find HTML elements
+const searchInput =
+    document.getElementById("product-search");
+
+const filterButtons =
+    document.querySelectorAll(".filter-btn");
+
+const productCards =
+    document.querySelectorAll(".product-card");
+
+const noProductsMessage =
+    document.getElementById("no-products");
+
+
+// Default category
+let selectedCategory = "all";
+
+
+// Search and filter function
+function filterProducts() {
+
+    const searchText =
+        searchInput.value.toLowerCase().trim();
+
+    let visibleProducts = 0;
+
+    productCards.forEach(function(card) {
+
+        const productName =
+            card.querySelector("h3").textContent.toLowerCase();
+
+        const productCategory =
+            card.dataset.category;
+
+        const matchesSearch =
+            productName.includes(searchText);
+
+        const matchesCategory =
+            selectedCategory === "all" ||
+            productCategory === selectedCategory;
+
+        if (matchesSearch && matchesCategory) {
+            card.hidden = false;
+            visibleProducts++;
+        } else {
+            card.hidden = true;
+        }
+    });
+
+    noProductsMessage.hidden =
+        visibleProducts !== 0;
+}
+
+
+// Search while typing
+searchInput.addEventListener("input", filterProducts);
+
+
+// Filter by category
+filterButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        selectedCategory = button.dataset.filter;
+
+        // Remove active state from all buttons
+        filterButtons.forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+
+        // Highlight selected category
+        button.classList.add("active");
+
+        // Update products
+        filterProducts();
+    });
+});
+
+
+// Display products when page loads
+filterProducts();
+
+
+
+/* ==========================================
+   CONTACT FORM - DEMONSTRATION
+========================================== */
+
+const contactForm =
+    document.getElementById("contact-form");
+
+const formFeedback =
+    document.getElementById("form-feedback");
+
+contactForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    formFeedback.textContent =
+        "Thank you! This is a demo form. Your message has not been sent.";
+
+    contactForm.reset();
 });

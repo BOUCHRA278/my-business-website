@@ -1,4 +1,14 @@
-* GENERAL SETTINGS */
+
+/* ==========================================
+   THE COZY TOUCH
+   FINAL CSS - LESSON 9
+========================================== */
+
+
+/* ==========================================
+   1. GENERAL SETTINGS
+========================================== */
+
 * {
     box-sizing: border-box;
 }
@@ -26,7 +36,11 @@ p {
     line-height: 1.7;
 }
 
-/* NAVIGATION */
+
+/* ==========================================
+   2. NAVIGATION
+========================================== */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -59,7 +73,11 @@ p {
     color: #e5c58a;
 }
 
-/* HERO SECTION */
+
+/* ==========================================
+   3. HERO SECTION
+========================================== */
+
 .hero {
     min-height: 420px;
     display: flex;
@@ -72,7 +90,7 @@ p {
             rgba(15, 32, 25, 0.94),
             rgba(15, 32, 25, 0.45)
         ),
-        url("images/hero.jpg") center/cover no-repeat;
+        url("images/candle.jpeg") center/cover no-repeat;
 
     color: white;
 }
@@ -100,16 +118,25 @@ p {
     margin-bottom: 28px;
 }
 
-/* BUTTONS */
+
+/* ==========================================
+   4. BUTTONS
+========================================== */
+
 .button {
     display: inline-block;
     padding: 13px 23px;
+    border: none;
     border-radius: 30px;
+
     background-color: #d6b474;
     color: #172f27;
+
     text-decoration: none;
     font-family: Arial, sans-serif;
     font-weight: bold;
+
+    cursor: pointer;
     transition: background-color 0.2s;
 }
 
@@ -117,7 +144,11 @@ p {
     background-color: #edd6a7;
 }
 
-/* PRODUCTS */
+
+/* ==========================================
+   5. PRODUCTS SECTION
+========================================== */
+
 .products {
     padding: 60px 7%;
     text-align: center;
@@ -145,6 +176,7 @@ p {
     background-color: white;
     border-radius: 12px;
     overflow: hidden;
+
     box-shadow: 0 5px 20px rgba(35, 48, 38, 0.09);
     transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -182,12 +214,105 @@ p {
     text-align: center;
 }
 
-/* ABOUT SECTION */
+
+/* ==========================================
+   6. LESSON 9 - PRODUCT SEARCH AND FILTERS
+========================================== */
+
+.shop-controls {
+    max-width: 800px;
+    margin: 30px auto 40px;
+    text-align: center;
+}
+
+/* Search bar */
+
+#product-search {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 15px 20px;
+
+    background-color: #fffdf9;
+    color: #243b32;
+
+    border: 1px solid #d8cbb7;
+    border-radius: 30px;
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#product-search:focus {
+    border-color: #d6b474;
+    box-shadow: 0 0 0 3px rgba(214, 180, 116, 0.2);
+}
+
+/* Category buttons */
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.filter-btn {
+    padding: 11px 20px;
+
+    background-color: transparent;
+    color: #172f27;
+
+    border: 1px solid #172f27;
+    border-radius: 25px;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: #172f27;
+    color: white;
+}
+
+/* Hide products when filtered */
+
+.product-card[hidden],
+#no-products[hidden] {
+    display: none !important;
+}
+
+/* No search results */
+
+#no-products {
+    text-align: center;
+    color: #777;
+    font-size: 18px;
+    margin: 30px auto;
+}
+
+
+/* ==========================================
+   7. ABOUT SECTION
+========================================== */
+
 .about {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 40px;
+
     padding: 60px 7%;
     background-color: #ebe4d6;
 }
@@ -204,7 +329,15 @@ p {
 }
 
 
-/* CONTACT FORM */
+/* ==========================================
+   8. CONTACT SECTION
+========================================== */
+
+.contact {
+    padding: 60px 7%;
+    text-align: center;
+}
+
 #contact-form {
     max-width: 500px;
     margin: 30px auto 0;
@@ -221,8 +354,10 @@ p {
 #contact-form textarea {
     width: 100%;
     padding: 13px;
+
     border: 1px solid #d7cdbb;
     border-radius: 6px;
+
     font: inherit;
     background-color: #fffdf9;
 }
@@ -234,8 +369,6 @@ p {
 
 #contact-form button {
     margin-top: 18px;
-    border: none;
-    cursor: pointer;
 }
 
 #form-feedback {
@@ -244,7 +377,169 @@ p {
 }
 
 
-/* FOOTER */
+/* ==========================================
+   9. LESSON 7 - ADVANCED SHOPPING CART
+========================================== */
+
+.cart-section {
+    padding: 60px 7%;
+    background-color: #fffdf9;
+    text-align: center;
+}
+
+.cart-section h2 {
+    color: #243b32;
+}
+
+#cart-items {
+    max-width: 750px;
+    margin: 30px auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    background-color: white;
+    border: 1px solid #e7dfd2;
+    border-radius: 12px;
+
+    padding: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.cart-item p {
+    color: #94723a;
+    margin: 8px 0 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    background-color: #172f27;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+.quantity-controls button:hover {
+    background-color: #3b5c4b;
+}
+
+.quantity-controls span {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-summary {
+    margin: 25px auto;
+    font-size: 18px;
+}
+
+.cart-summary h3,
+#cart-total {
+    color: #94723a;
+}
+
+#clear-cart {
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   10. LESSON 8 - WHATSAPP ORDER FORM
+========================================== */
+
+.order-form {
+    max-width: 600px;
+    margin: 45px auto 0;
+    padding: 30px;
+
+    background-color: #f7f3eb;
+    border: 1px solid #e7dfd2;
+    border-radius: 14px;
+
+    text-align: left;
+}
+
+.order-form h3 {
+    color: #243b32;
+    font-size: 26px;
+    text-align: center;
+}
+
+.order-form > p {
+    color: #646a60;
+    text-align: center;
+}
+
+.order-form label {
+    display: block;
+    margin: 20px 0 8px;
+    font-weight: bold;
+}
+
+.order-form input,
+.order-form textarea {
+    width: 100%;
+    padding: 14px;
+
+    border: 1px solid #d7cdbb;
+    border-radius: 8px;
+
+    background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+.order-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.whatsapp-button {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+
+    background-color: #1f7a50;
+    color: white;
+
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.whatsapp-button:hover {
+    background-color: #17613f;
+}
+
+#order-feedback {
+    color: #9a472d;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+/* ==========================================
+   11. FOOTER
+========================================== */
+
 footer {
     background-color: #172f27;
     color: white;
@@ -257,8 +552,13 @@ footer p {
     font-size: 14px;
 }
 
-/* RESPONSIVE DESIGN */
+
+/* ==========================================
+   12. RESPONSIVE DESIGN - TABLETS
+========================================== */
+
 @media (max-width: 768px) {
+
     .navbar {
         flex-direction: column;
         text-align: center;
@@ -287,7 +587,43 @@ footer p {
     }
 }
 
+
+/* ==========================================
+   13. RESPONSIVE DESIGN - MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-form {
+        padding: 20px;
+    }
+
+    .shop-controls {
+        margin: 25px auto 30px;
+    }
+
+    #product-search {
+        padding: 13px 16px;
+        font-size: 14px;
+    }
+
+    .filter-buttons {
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+}
+
 @media (max-width: 480px) {
+
     .product-container {
         grid-template-columns: 1fr;
     }
@@ -301,187 +637,8 @@ footer p {
     .contact h2 {
         font-size: 27px;
     }
-}
 
-/* SHOPPING CART */
-.cart-section {
-    padding: 50px 7%;
-    background-color: #ffffff;
-    text-align: center;
-}
-
-.cart-section h2 {
-    color: #243b32;
-}
-
-#cart-items {
-    max-width: 500px;
-    margin: 25px auto;
-    text-align: left;
-}
-
-#cart-items p {
-    padding: 12px;
-    border-bottom: 1px solid #e8e1d5;
-    font-family: Arial, sans-serif;
-}
-
-#cart-total {
-    color: #94723a;
-}
-
-#clear-cart {
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-}
-/* LESSON 7 - ADVANCED CART */
-
-.cart-section {
-    padding: 60px 7%;
-    background-color: #fffdf9;
-    text-align: center;
-}
-
-#cart-items {
-    max-width: 750px;
-    margin: 30px auto;
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-
-    background-color: white;
-    border: 1px solid #e7dfd2;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.cart-item p {
-    color: #94723a;
-    margin: 8px 0 0;
-}
-
-.quantity-controls {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.quantity-controls button {
-    background-color: #172f27;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 9px 12px;
-    cursor: pointer;
-}
-
-.quantity-controls button:hover {
-    background-color: #3b5c4b;
-}
-
-.quantity-controls span {
-    font-weight: bold;
-    min-width: 20px;
-    text-align: center;
-}
-
-.cart-summary {
-    margin: 25px auto;
-    font-size: 18px;
-}
-
-.cart-summary h3 {
-    color: #94723a;
-}
-
-#clear-cart {
-    border: none;
-    cursor: pointer;
-}
-
-@media (max-width: 600px) {
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
-/* LESSON 8 - ORDER FORM */
-
-.order-form {
-    max-width: 600px;
-    margin: 45px auto 0;
-    padding: 30px;
-    background-color: #f7f3eb;
-    border: 1px solid #e7dfd2;
-    border-radius: 14px;
-    text-align: left;
-}
-
-.order-form h3 {
-    color: #243b32;
-    font-size: 26px;
-    text-align: center;
-}
-
-.order-form > p {
-    color: #646a60;
-    text-align: center;
-}
-
-.order-form label {
-    display: block;
-    margin: 20px 0 8px;
-    font-weight: bold;
-}
-
-.order-form input,
-.order-form textarea {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #d7cdbb;
-    border-radius: 8px;
-    background-color: white;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-}
-
-.order-form textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.whatsapp-button {
-    display: block;
-    width: 100%;
-    margin-top: 25px;
-    background-color: #1f7a50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.whatsapp-button:hover {
-    background-color: #17613f;
-}
-
-#order-feedback {
-    color: #9a472d;
-    font-size: 14px;
-    text-align: center;
-}
-
-@media (max-width: 600px) {
-    .order-form {
-        padding: 20px;
+    .hero h1 {
+        font-size: 30px;
     }
 }
