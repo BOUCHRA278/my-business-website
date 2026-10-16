@@ -166,7 +166,7 @@ updateCart();
 
 // Replace this with your business WhatsApp number.
 // Use international format without + or spaces.
-const businessWhatsApp = "9617655259";
+const businessWhatsApp = "96176552059";
 
 const whatsappButton = document.getElementById("whatsapp-order");
 const orderFeedback = document.getElementById("order-feedback");
