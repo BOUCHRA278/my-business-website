@@ -335,3 +335,82 @@ footer p {
     cursor: pointer;
     font-size: 14px;
 }
+/* LESSON 7 - ADVANCED CART */
+
+.cart-section {
+    padding: 60px 7%;
+    background-color: #fffdf9;
+    text-align: center;
+}
+
+#cart-items {
+    max-width: 750px;
+    margin: 30px auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    background-color: white;
+    border: 1px solid #e7dfd2;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.cart-item p {
+    color: #94723a;
+    margin: 8px 0 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    background-color: #172f27;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+.quantity-controls button:hover {
+    background-color: #3b5c4b;
+}
+
+.quantity-controls span {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-summary {
+    margin: 25px auto;
+    font-size: 18px;
+}
+
+.cart-summary h3 {
+    color: #94723a;
+}
+
+#clear-cart {
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+

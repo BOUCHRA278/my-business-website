@@ -6,348 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>The Cozy Touch | Handmade with Love</title>
-
-    <style>
-        
-/* GENERAL SETTINGS */
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    background-color: #f7f3eb;
-    color: #243b32;
-}
-
-h1, h2, h3, p {
-    margin-top: 0;
-}
-
-h2 {
-    font-size: 32px;
-}
-
-p {
-    line-height: 1.7;
-}
-
-/* NAVIGATION */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 22px 7%;
-    background-color: #172f27;
-}
-
-.logo {
-    color: #e5c58a;
-    font-size: 25px;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-}
-
-.nav-links a:hover {
-    color: #e5c58a;
-}
-
-/* HERO SECTION */
-.hero {
-    min-height: 420px;
-    display: flex;
-    align-items: center;
-    padding: 65px 7%;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(15, 32, 25, 0.94),
-            rgba(15, 32, 25, 0.45)
-        ),
-        url("images/hero.jpg") center/cover no-repeat;
-
-    color: white;
-}
-
-.hero-content {
-    max-width: 570px;
-}
-
-.eyebrow {
-    color: #e5c58a;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-}
-
-.hero h1 {
-    font-size: 46px;
-    line-height: 1.2;
-    margin-bottom: 20px;
-}
-
-.hero-content > p:not(.eyebrow) {
-    font-family: Arial, sans-serif;
-    font-size: 17px;
-    margin-bottom: 28px;
-}
-
-/* BUTTONS */
-.button {
-    display: inline-block;
-    padding: 13px 23px;
-    border-radius: 30px;
-    background-color: #d6b474;
-    color: #172f27;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    transition: background-color 0.2s;
-}
-
-.button:hover {
-    background-color: #edd6a7;
-}
-
-/* PRODUCTS */
-.products {
-    padding: 60px 7%;
-    text-align: center;
-}
-
-.products h2,
-.about h2,
-.contact h2 {
-    color: #243b32;
-}
-
-.section-description {
-    color: #6c7067;
-    margin-bottom: 35px;
-}
-
-.product-container {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 25px;
-    text-align: left;
-}
-
-.product-card {
-    background-color: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(35, 48, 38, 0.09);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(35, 48, 38, 0.15);
-}
-
-.product-card img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    display: block;
-}
-
-.product-info {
-    padding: 20px;
-}
-
-.product-info h3 {
-    font-size: 21px;
-    margin-bottom: 10px;
-}
-
-.price {
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    color: #94723a;
-}
-
-.product-button {
-    margin-top: 5px;
-    font-size: 12px;
-    text-align: center;
-}
-
-/* ABOUT SECTION */
-.about {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 40px;
-    padding: 60px 7%;
-    background-color: #ebe4d6;
-}
-
-.about img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-.about-content p {
-    color: #565d54;
-}
-
-
-/* CONTACT FORM */
-#contact-form {
-    max-width: 500px;
-    margin: 30px auto 0;
-    text-align: left;
-}
-
-#contact-form label {
-    display: block;
-    margin: 16px 0 7px;
-    font-weight: bold;
-}
-
-#contact-form input,
-#contact-form textarea {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #d7cdbb;
-    border-radius: 6px;
-    font: inherit;
-    background-color: #fffdf9;
-}
-
-#contact-form textarea {
-    min-height: 130px;
-    resize: vertical;
-}
-
-#contact-form button {
-    margin-top: 18px;
-    border: none;
-    cursor: pointer;
-}
-
-#form-feedback {
-    margin-top: 15px;
-    color: #243b32;
-}
-
-
-/* FOOTER */
-footer {
-    background-color: #172f27;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-
-footer p {
-    margin: 0;
-    font-size: 14px;
-}
-
-/* RESPONSIVE DESIGN */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .nav-links {
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .hero {
-        min-height: 350px;
-        padding: 45px 6%;
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    .product-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .about {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .product-container {
-        grid-template-columns: 1fr;
-    }
-
-    .product-card img {
-        height: 250px;
-    }
-
-    .products h2,
-    .about h2,
-    .contact h2 {
-        font-size: 27px;
-    }
-}
-
-/* SHOPPING CART */
-.cart-section {
-    padding: 50px 7%;
-    background-color: #ffffff;
-    text-align: center;
-}
-
-.cart-section h2 {
-    color: #243b32;
-}
-
-#cart-items {
-    max-width: 500px;
-    margin: 25px auto;
-    text-align: left;
-}
-
-#cart-items p {
-    padding: 12px;
-    border-bottom: 1px solid #e8e1d5;
-    font-family: Arial, sans-serif;
-}
-
-#cart-total {
-    color: #94723a;
-}
-
-#clear-cart {
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-    </style>
+<link rel="stylesheet" href="style.css">
+   
     
 </head>
 
@@ -527,20 +187,35 @@ footer p {
 
     
 <!-- SHOPPING CART -->
+<section 
+<!-- ADVANCED SHOPPING CART -->
 <section id="cart" class="cart-section">
+
     <h2>Your Shopping Cart</h2>
+
+    <p>Review your handmade products before ordering.</p>
 
     <div id="cart-items">
         <p>Your cart is empty.</p>
     </div>
 
-    <h3>
-        Total: $<span id="cart-total">0.00</span>
-    </h3>
+    <div class="cart-summary">
+        <p>
+            Total Items:
+            <span id="total-items">0</span>
+        </p>
+
+        <h3>
+            Total: $<span id="cart-total">0.00</span>
+        </h3>
+    </div>
 
     <button id="clear-cart" class="button" type="button">
         Clear Cart
     </button>
+
+</section>
+
 </section>
 
 
@@ -551,84 +226,6 @@ footer p {
 
 </body>
 
-<script>
-    // 1. Store the products added to the cart
-    let cart = [];
-
-    // 2. Find the HTML elements we need
-    const cartCount = document.getElementById("cart-count");
-    const cartItems = document.getElementById("cart-items");
-    const cartTotal = document.getElementById("cart-total");
-    const clearButton = document.getElementById("clear-cart");
-
-    // 3. Add a product when its button is clicked
-    document.querySelectorAll(".product-button").forEach(function(button) {
-
-        button.addEventListener("click", function() {
-
-            const name = button.dataset.name;
-            const price = Number(button.dataset.price);
-
-            cart.push({
-                name: name,
-                price: price
-            });
-
-            updateCart();
-        });
-
-    });
-
-    // 4. Update the shopping cart display
-    function updateCart() {
-
-        cartCount.textContent = cart.length;
-
-        if (cart.length === 0) {
-            cartItems.textContent = "Your cart is empty.";
-        } else {
-            cartItems.replaceChildren();
-
-            cart.forEach(function(product) {
-                const item = document.createElement("p");
-
-                item.textContent =
-                    product.name + " - $" +
-                    product.price.toFixed(2);
-
-                cartItems.appendChild(item);
-            });
-        }
-
-        // Calculate the total price
-        const total = cart.reduce(function(sum, product) {
-            return sum + product.price;
-        }, 0);
-
-        cartTotal.textContent = total.toFixed(2);
-    }
-
-    // 5. Clear all products from the cart
-    clearButton.addEventListener("click", function() {
-        cart = [];
-        updateCart();
-    });
-    
-const contactForm = document.getElementById("contact-form");
-const formFeedback = document.getElementById("form-feedback");
-
-contactForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const name = document.getElementById("customer-name").value.trim();
-
-    formFeedback.textContent =
-        "Thank you, " + name +
-        "! Your form is working correctly.";
-
-    contactForm.reset();
-});
-
-</script>
+<script src="script.js"></script>
 
 </html>
