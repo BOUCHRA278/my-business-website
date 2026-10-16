@@ -414,3 +414,74 @@ footer p {
     }
 }
 
+/* LESSON 8 - ORDER FORM */
+
+.order-form {
+    max-width: 600px;
+    margin: 45px auto 0;
+    padding: 30px;
+    background-color: #f7f3eb;
+    border: 1px solid #e7dfd2;
+    border-radius: 14px;
+    text-align: left;
+}
+
+.order-form h3 {
+    color: #243b32;
+    font-size: 26px;
+    text-align: center;
+}
+
+.order-form > p {
+    color: #646a60;
+    text-align: center;
+}
+
+.order-form label {
+    display: block;
+    margin: 20px 0 8px;
+    font-weight: bold;
+}
+
+.order-form input,
+.order-form textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d7cdbb;
+    border-radius: 8px;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+.order-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.whatsapp-button {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    background-color: #1f7a50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.whatsapp-button:hover {
+    background-color: #17613f;
+}
+
+#order-feedback {
+    color: #9a472d;
+    font-size: 14px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .order-form {
+        padding: 20px;
+    }
+}

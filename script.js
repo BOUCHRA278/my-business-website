@@ -161,3 +161,89 @@ clearButton.addEventListener("click", function() {
 
 // 9. Display saved products when the page loads
 updateCart();
+
+// LESSON 8 - WHATSAPP ORDERING SYSTEM
+
+// Replace this with your business WhatsApp number.
+// Use international format without + or spaces.
+const businessWhatsApp = "9617655259";
+
+const whatsappButton = document.getElementById("whatsapp-order");
+const orderFeedback = document.getElementById("order-feedback");
+
+whatsappButton.addEventListener("click", function() {
+
+    // Check if the shopping cart is empty
+    if (cart.length === 0) {
+        orderFeedback.textContent =
+            "Please add products to your cart first.";
+        return;
+    }
+
+    // Check if the business number has been configured
+    if (!/^\d{8,15}$/.test(businessWhatsApp)) {
+        orderFeedback.textContent =
+            "Please configure the business WhatsApp number.";
+        return;
+    }
+
+    // Get customer details
+    const customerName =
+        document.getElementById("order-name").value.trim();
+
+    const orderNotes =
+        document.getElementById("order-notes").value.trim();
+
+    // Build the order message
+    let message = "Hello! I would like to place an order from The Cozy Touch.\n\n";
+
+    message += "ORDER DETAILS:\n";
+
+    let total = 0;
+
+    cart.forEach(function(product) {
+
+        const subtotal = product.price * product.quantity;
+
+        message +=
+            product.name +
+            " x " + product.quantity +
+            " = $" + subtotal.toFixed(2) + "\n";
+
+        total += subtotal;
+    });
+
+    message += "\nTOTAL: $" + total.toFixed(2);
+
+    if (customerName) {
+        message += "\nCustomer: " + customerName;
+    }
+
+    if (orderNotes) {
+        message += "\nSpecial Instructions: " + orderNotes;
+    }
+
+    message += "\n\nPlease confirm availability and the final price.";
+
+    // Encode the message for use in a URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Build the WhatsApp URL
+    const whatsappURL =
+        "https://wa.me/" +
+        businessWhatsApp +
+        "?text=" +
+        encodedMessage;
+
+    // Open WhatsApp in a new tab
+    const newWindow = window.open(
+        whatsappURL,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
+    if (!newWindow) {
+        orderFeedback.textContent =
+            "Please allow pop-ups to open WhatsApp.";
+    }
+});
