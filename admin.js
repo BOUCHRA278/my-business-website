@@ -453,9 +453,11 @@ productForm.addEventListener("submit", async (event) => {
 
   } catch (error) {
 
-    showMessage(
-      "save-message",
-      "Could not save product: " + error.message
+    console.error("Firebase login error:", error.code, error);
+
+  showMessage(
+    "login-message",
+    "Login error: " + (error.code || "Unknown error")
     );
 
   } finally {
