@@ -36,8 +36,16 @@ const productsContainer = $("admin-products");
 let allProducts = [];
 let stopWatching = null;
 
+// ========================================
+// SHOW MESSAGES
+// ========================================
+
 function showMessage(id, message) {
-  $(id).textContent = message;
+  const element = $(id);
+
+  if (element) {
+    element.textContent = message;
+  }
 }
 
 // ========================================
@@ -50,23 +58,57 @@ loginForm.addEventListener("submit", async (event) => {
   const email = $("email").value.trim();
   const password = $("password").value;
 
+  const loginButton = loginForm.querySelector(
+    'button[type="submit"]'
+  );
+
+  if (loginButton) {
+    loginButton.disabled = true;
+  }
+
   showMessage("login-message", "Signing in...");
 
   try {
-    await signInWithEmailAndPassword(
+    const result = await signInWithEmailAndPassword(
       auth,
       email,
       password
     );
 
     $("password").value = "";
+
+    if (result.user.uid !== ADMIN_UID) {
+      showMessage(
+        "login-message",
+        "This account is not authorized as an admin."
+      );
+
+      await signOut(auth);
+      return;
+    }
+
     showMessage("login-message", "");
 
   } catch (error) {
+
+    // Show the actual Firebase error.
+    console.error(
+      "Firebase login error:",
+      error.code,
+      error
+    );
+
     showMessage(
       "login-message",
-      "Sign in failed. Check your email and password."
+      "Login error: " +
+      (error.code || "Unknown error")
     );
+
+  } finally {
+
+    if (loginButton) {
+      loginButton.disabled = false;
+    }
   }
 });
 
@@ -75,9 +117,13 @@ loginForm.addEventListener("submit", async (event) => {
 // ========================================
 
 $("logout").addEventListener("click", async () => {
+
   try {
     await signOut(auth);
+
   } catch (error) {
+    console.error("Logout error:", error);
+
     showMessage(
       "save-message",
       "Sign out failed: " + error.message
@@ -98,12 +144,19 @@ onAuthStateChanged(auth, async (user) => {
   loginPanel.hidden = isAdmin;
   adminPanel.hidden = !isAdmin;
 
+  // Stop the previous Firestore listener.
   if (stopWatching) {
     stopWatching();
     stopWatching = null;
   }
 
-  if (user && !isAdmin) {
+  if (!user) {
+    allProducts = [];
+    return;
+  }
+
+  if (!isAdmin) {
+
     showMessage(
       "login-message",
       "This account is not authorized as an admin."
@@ -113,27 +166,35 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  if (isAdmin) {
-    stopWatching = onSnapshot(
-      collection(db, "products"),
+  showMessage("login-message", "");
 
-      (snapshot) => {
-        allProducts = snapshot.docs.map((item) => ({
-          id: item.id,
-          ...item.data()
-        }));
+  // Load products from Firestore.
+  stopWatching = onSnapshot(
+    collection(db, "products"),
 
-        renderProducts();
-      },
+    (snapshot) => {
 
-      (error) => {
-        showMessage(
-          "save-message",
-          "Cannot load products: " + error.message
-        );
-      }
-    );
-  }
+      allProducts = snapshot.docs.map((item) => ({
+        id: item.id,
+        ...item.data()
+      }));
+
+      renderProducts();
+    },
+
+    (error) => {
+
+      console.error(
+        "Firestore loading error:",
+        error
+      );
+
+      showMessage(
+        "save-message",
+        "Cannot load products: " + error.message
+      );
+    }
+  );
 });
 
 // ========================================
@@ -141,11 +202,16 @@ onAuthStateChanged(auth, async (user) => {
 // ========================================
 
 function resetProductForm() {
+
   productForm.reset();
 
   $("product-id").value = "";
+  $("image-urls").value = "";
   $("published").checked = true;
+
   $("save-product").textContent = "Save Product";
+
+  showMessage("save-message", "");
 }
 
 $("cancel-edit").addEventListener(
@@ -162,6 +228,7 @@ function renderProducts() {
   productsContainer.replaceChildren();
 
   if (allProducts.length === 0) {
+
     const message = document.createElement("p");
 
     message.textContent =
@@ -176,27 +243,36 @@ function renderProducts() {
     const row = document.createElement("div");
     row.className = "product-row";
 
+    // Product image.
     const image = document.createElement("img");
+
     image.src = product.images?.[0] || "";
     image.alt = product.name || "Product";
 
+    image.onerror = () => {
+      image.style.visibility = "hidden";
+    };
+
+    // Product information.
     const info = document.createElement("div");
     info.className = "info";
 
     const title = document.createElement("strong");
-    title.textContent = product.name;
+    title.textContent = product.name || "Unnamed Product";
 
     const details = document.createElement("p");
 
     details.textContent =
-      "$" + Number(product.price).toFixed(2) +
-      " • " + product.category +
+      "$" + Number(product.price || 0).toFixed(2) +
+      " • " + (product.category || "") +
       " • " +
       (product.published ? "Published" : "Draft");
 
     info.append(title, details);
 
+    // Edit button.
     const editButton = document.createElement("button");
+
     editButton.type = "button";
     editButton.textContent = "Edit";
 
@@ -204,7 +280,9 @@ function renderProducts() {
       editProduct(product);
     });
 
+    // Delete button.
     const deleteButton = document.createElement("button");
+
     deleteButton.type = "button";
     deleteButton.textContent = "Delete";
     deleteButton.className = "delete-button";
@@ -232,9 +310,11 @@ function editProduct(product) {
 
   $("product-id").value = product.id;
 
-  $("name").value = product.name;
-  $("price").value = product.price;
-  $("category").value = product.category;
+  $("name").value = product.name || "";
+  $("price").value = product.price ?? "";
+
+  $("category").value =
+    product.category || "candles";
 
   $("description").value =
     product.description || "";
@@ -242,14 +322,21 @@ function editProduct(product) {
   $("published").checked =
     Boolean(product.published);
 
-  // Display current image URLs.
+  // Show existing image URLs.
   $("image-urls").value =
     (product.images || []).join("\n");
 
-  $("save-product").textContent = "Update Product";
+  $("save-product").textContent =
+    "Update Product";
+
+  showMessage(
+    "save-message",
+    "Editing: " + product.name
+  );
 
   productForm.scrollIntoView({
-    behavior: "smooth"
+    behavior: "smooth",
+    block: "start"
   });
 }
 
@@ -260,12 +347,17 @@ function editProduct(product) {
 async function deleteProduct(product) {
 
   const confirmed = confirm(
-    "Delete " + product.name + "? This cannot be undone."
+    "Delete " +
+    product.name +
+    "? This cannot be undone."
   );
 
-  if (!confirmed) return;
+  if (!confirmed) {
+    return;
+  }
 
   try {
+
     await deleteDoc(
       doc(db, "products", product.id)
     );
@@ -280,6 +372,12 @@ async function deleteProduct(product) {
     );
 
   } catch (error) {
+
+    console.error(
+      "Delete product error:",
+      error
+    );
+
     showMessage(
       "save-message",
       "Delete failed: " + error.message
@@ -288,17 +386,19 @@ async function deleteProduct(product) {
 }
 
 // ========================================
-// IMAGE URL VALIDATION
+// VALIDATE IMAGE URLS
 // ========================================
 
 function getImageURLs() {
 
   const lines = $("image-urls")
-    .value.split("\n")
+    .value
+    .split("\n")
     .map((url) => url.trim())
     .filter(Boolean);
 
-  if (lines.length === 0 || lines.length > 6) {
+  if (lines.length < 1 || lines.length > 6) {
+
     throw new Error(
       "Enter between 1 and 6 image URLs."
     );
@@ -315,22 +415,56 @@ function getImageURLs() {
 
     try {
       parsed = new URL(imageURL);
+
     } catch (error) {
-      throw new Error("Invalid image URL: " + imageURL);
+
+      throw new Error(
+        "Invalid image URL: " + imageURL
+      );
+    }
+
+    if (parsed.protocol !== "https:") {
+
+      throw new Error(
+        "Image URLs must use HTTPS."
+      );
+    }
+
+    if (!allowedHosts.includes(parsed.hostname)) {
+
+      throw new Error(
+        "Use an image URL from your GitHub website."
+      );
     }
 
     if (
-      parsed.protocol !== "https:" ||
-      !allowedHosts.includes(parsed.hostname)
+      parsed.hostname === "raw.githubusercontent.com" &&
+      !parsed.pathname.startsWith(
+        "/BOUCHRA278/my-business-website/"
+      )
     ) {
+
       throw new Error(
-        "Use an HTTPS image URL from your GitHub website."
+        "Use images from your own GitHub repository."
+      );
+    }
+
+    if (
+      parsed.hostname === "bouchra278.github.io" &&
+      !parsed.pathname.startsWith(
+        "/my-business-website/"
+      )
+    ) {
+
+      throw new Error(
+        "Use images from your own GitHub website."
       );
     }
 
     if (
       !/\.(jpg|jpeg|png|webp)$/i.test(parsed.pathname)
     ) {
+
       throw new Error(
         "Image URL must end in JPG, JPEG, PNG or WebP."
       );
@@ -348,11 +482,14 @@ productForm.addEventListener("submit", async (event) => {
 
   event.preventDefault();
 
+  // Only the authorized Firebase user can save.
   if (auth.currentUser?.uid !== ADMIN_UID) {
+
     showMessage(
       "save-message",
       "You are not authorized."
     );
+
     return;
   }
 
@@ -361,8 +498,12 @@ productForm.addEventListener("submit", async (event) => {
   const name = $("name").value.trim();
   const price = Number($("price").value);
   const category = $("category").value;
-  const description = $("description").value.trim();
-  const published = $("published").checked;
+
+  const description =
+    $("description").value.trim();
+
+  const published =
+    $("published").checked;
 
   const validCategories = [
     "candles",
@@ -370,6 +511,7 @@ productForm.addEventListener("submit", async (event) => {
     "gifts"
   ];
 
+  // Validate product details.
   if (
     !name ||
     name.length > 100 ||
@@ -379,35 +521,49 @@ productForm.addEventListener("submit", async (event) => {
     !validCategories.includes(category) ||
     description.length > 2000
   ) {
+
     showMessage(
       "save-message",
       "Please enter valid product details."
     );
+
     return;
   }
 
+  // Validate image URLs.
   let images;
 
   try {
     images = getImageURLs();
+
   } catch (error) {
-    showMessage("save-message", error.message);
+
+    showMessage(
+      "save-message",
+      error.message
+    );
+
     return;
   }
 
+  // Check that the edited product still exists.
   const oldProduct = allProducts.find(
     (product) => product.id === productId
   );
 
   if (productId && !oldProduct) {
+
     showMessage(
       "save-message",
       "Product not found. Refresh and try again."
     );
+
     return;
   }
 
-  $("save-product").disabled = true;
+  const saveButton = $("save-product");
+
+  saveButton.disabled = true;
 
   showMessage(
     "save-message",
@@ -428,6 +584,7 @@ productForm.addEventListener("submit", async (event) => {
 
     if (productId) {
 
+      // Update existing product.
       await updateDoc(
         doc(db, "products", productId),
         productData
@@ -435,6 +592,7 @@ productForm.addEventListener("submit", async (event) => {
 
     } else {
 
+      // Create new product.
       await addDoc(
         collection(db, "products"),
         {
@@ -453,15 +611,19 @@ productForm.addEventListener("submit", async (event) => {
 
   } catch (error) {
 
-    console.error("Firebase login error:", error.code, error);
+    console.error(
+      "Save product error:",
+      error
+    );
 
-  showMessage(
-    "login-message",
-    "Login error: " + (error.code || "Unknown error")
+    showMessage(
+      "save-message",
+      "Could not save product: " +
+      error.message
     );
 
   } finally {
 
-    $("save-product").disabled = false;
+    saveButton.disabled = false;
   }
 });
