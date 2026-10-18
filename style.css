@@ -1,815 +1,707 @@
 
-/* ==========================================
-   THE COZY TOUCH
-   FINAL CSS - LESSON 10
-========================================== */
-
-
-/* ==========================================
-   1. GENERAL SETTINGS
-========================================== */
+/* THE COZY TOUCH - CUSTOMER WEBSITE */
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    background-color: #f7f3eb;
-    color: #243b32;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #f7f3eb;
+  color: #243b32;
 }
 
 h1, h2, h3, p {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 h2 {
-    font-size: 32px;
+  font-size: 32px;
 }
 
 p {
-    line-height: 1.7;
+  line-height: 1.7;
 }
 
+button, input, textarea {
+  font: inherit;
+}
 
-/* ==========================================
-   2. NAVIGATION
-========================================== */
+/* NAVIGATION */
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 22px 7%;
-    background-color: #172f27;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 22px 7%;
+  background: #172f27;
 }
 
 .logo {
-    color: #e5c58a;
-    font-size: 25px;
-    font-weight: bold;
-    text-decoration: none;
+  color: #e5c58a;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
 }
 
 .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
 }
 
 .nav-links a:hover {
-    color: #e5c58a;
+  color: #e5c58a;
 }
 
-
-/* ==========================================
-   3. HERO SECTION
-========================================== */
+/* HERO */
 
 .hero {
-    min-height: 420px;
-    display: flex;
-    align-items: center;
-    padding: 65px 7%;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(15, 32, 25, 0.94),
-            rgba(15, 32, 25, 0.45)
-        ),
-        url("images/candle.jpeg") center/cover no-repeat;
-
-    color: white;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  padding: 65px 7%;
+  color: white;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15, 32, 25, 0.94),
+      rgba(15, 32, 25, 0.45)
+    ),
+    url("images/candle.jpeg") center/cover no-repeat;
 }
 
 .hero-content {
-    max-width: 570px;
+  max-width: 570px;
 }
 
 .eyebrow {
-    color: #e5c58a;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
+  color: #e5c58a;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
 }
 
 .hero h1 {
-    font-size: 46px;
-    line-height: 1.2;
-    margin-bottom: 20px;
+  font-size: 46px;
+  line-height: 1.2;
+  margin-bottom: 20px;
 }
 
 .hero-content > p:not(.eyebrow) {
-    font-family: Arial, sans-serif;
-    font-size: 17px;
-    margin-bottom: 28px;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  margin-bottom: 28px;
 }
 
-
-/* ==========================================
-   4. BUTTONS
-========================================== */
+/* BUTTONS */
 
 .button {
-    display: inline-block;
-    padding: 13px 23px;
-    border: none;
-    border-radius: 30px;
-
-    background-color: #d6b474;
-    color: #172f27;
-
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-
-    cursor: pointer;
-    transition: background-color 0.2s;
+  display: inline-block;
+  padding: 13px 23px;
+  border: none;
+  border-radius: 30px;
+  background: #d6b474;
+  color: #172f27;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 .button:hover {
-    background-color: #edd6a7;
+  background: #edd6a7;
 }
 
-
-/* ==========================================
-   5. PRODUCTS SECTION
-========================================== */
+/* SHOP */
 
 .products {
-    padding: 60px 7%;
-    text-align: center;
+  padding: 60px 7%;
+  text-align: center;
 }
 
 .products h2,
 .about h2,
 .contact h2 {
-    color: #243b32;
+  color: #243b32;
 }
 
 .section-description {
-    color: #6c7067;
-    margin-bottom: 35px;
+  color: #6c7067;
+  margin-bottom: 35px;
 }
 
 .product-container {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 25px;
-    text-align: left;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  text-align: left;
 }
 
 .product-card {
-    background-color: white;
-    border-radius: 12px;
-    overflow: hidden;
-
-    box-shadow: 0 5px 20px rgba(35, 48, 38, 0.09);
-    transition: transform 0.2s, box-shadow 0.2s;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(35, 48, 38, 0.09);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(35, 48, 38, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(35, 48, 38, 0.15);
 }
 
-.product-card img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    display: block;
+.product-card > img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
 }
 
 .product-info {
-    padding: 20px;
+  padding: 20px;
 }
 
 .product-info h3 {
-    font-size: 21px;
-    margin-bottom: 10px;
+  font-size: 21px;
+  margin-bottom: 10px;
 }
 
 .price {
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    color: #94723a;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #94723a;
 }
 
 .product-button {
-    margin-top: 5px;
-    font-size: 12px;
-    text-align: center;
+  margin-top: 5px;
+  font-size: 12px;
 }
 
-
-/* ==========================================
-   6. LESSON 9 - PRODUCT SEARCH AND FILTERS
-========================================== */
+/* SEARCH AND FILTERS */
 
 .shop-controls {
-    max-width: 800px;
-    margin: 30px auto 40px;
-    text-align: center;
+  max-width: 800px;
+  margin: 30px auto 40px;
 }
 
-/* Search bar */
-
 #product-search {
-    display: block;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 15px 20px;
-
-    background-color: #fffdf9;
-    color: #243b32;
-
-    border: 1px solid #d8cbb7;
-    border-radius: 30px;
-
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  background: #fffdf9;
+  color: #243b32;
+  border: 1px solid #d8cbb7;
+  border-radius: 30px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
 }
 
 #product-search:focus {
-    border-color: #d6b474;
-    box-shadow: 0 0 0 3px rgba(214, 180, 116, 0.2);
+  outline: none;
+  border-color: #d6b474;
+  box-shadow: 0 0 0 3px rgba(214, 180, 116, 0.2);
 }
 
-/* Category buttons */
-
 .filter-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
 }
 
 .filter-btn {
-    padding: 11px 20px;
-
-    background-color: transparent;
-    color: #172f27;
-
-    border: 1px solid #172f27;
-    border-radius: 25px;
-
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-
-    cursor: pointer;
-    transition: all 0.3s;
+  padding: 11px 20px;
+  background: transparent;
+  color: #172f27;
+  border: 1px solid #172f27;
+  border-radius: 25px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .filter-btn:hover,
 .filter-btn.active {
-    background-color: #172f27;
-    color: white;
+  background: #172f27;
+  color: white;
 }
-
-/* Hide filtered products */
-
-.product-card[hidden],
-#no-products[hidden] {
-    display: none !important;
-}
-
-/* No search results */
 
 #no-products {
-    text-align: center;
-    color: #777;
-    font-size: 18px;
-    margin: 30px auto;
+  text-align: center;
+  color: #777;
+  font-size: 18px;
+  margin: 30px auto;
 }
 
+[hidden] {
+  display: none !important;
+}
 
-/* ==========================================
-   7. ABOUT SECTION
-========================================== */
+/* ABOUT */
 
 .about {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 40px;
-
-    padding: 60px 7%;
-    background-color: #ebe4d6;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  padding: 60px 7%;
+  background: #ebe4d6;
 }
 
 .about img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 12px;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 .about-content p {
-    color: #565d54;
+  color: #565d54;
 }
 
-
-/* ==========================================
-   8. CONTACT SECTION
-========================================== */
+/* CONTACT */
 
 .contact {
-    padding: 60px 7%;
-    text-align: center;
+  padding: 60px 7%;
+  text-align: center;
 }
 
 #contact-form {
-    max-width: 500px;
-    margin: 30px auto 0;
-    text-align: left;
+  max-width: 500px;
+  margin: 30px auto 0;
+  text-align: left;
 }
 
 #contact-form label {
-    display: block;
-    margin: 16px 0 7px;
-    font-weight: bold;
+  display: block;
+  margin: 16px 0 7px;
+  font-weight: bold;
 }
 
 #contact-form input,
 #contact-form textarea {
-    width: 100%;
-    padding: 13px;
-
-    border: 1px solid #d7cdbb;
-    border-radius: 6px;
-
-    font: inherit;
-    background-color: #fffdf9;
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d7cdbb;
+  border-radius: 6px;
+  background: #fffdf9;
 }
 
 #contact-form textarea {
-    min-height: 130px;
-    resize: vertical;
+  min-height: 130px;
+  resize: vertical;
 }
 
 #contact-form button {
-    margin-top: 18px;
+  margin-top: 18px;
 }
 
 #form-feedback {
-    margin-top: 15px;
-    color: #243b32;
+  margin-top: 15px;
 }
 
-
-/* ==========================================
-   9. LESSON 7 - ADVANCED SHOPPING CART
-========================================== */
+/* SHOPPING CART */
 
 .cart-section {
-    padding: 60px 7%;
-    background-color: #fffdf9;
-    text-align: center;
-}
-
-.cart-section h2 {
-    color: #243b32;
+  padding: 60px 7%;
+  background: #fffdf9;
+  text-align: center;
 }
 
 #cart-items {
-    max-width: 750px;
-    margin: 30px auto;
+  max-width: 750px;
+  margin: 30px auto;
 }
 
 .cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-
-    background-color: white;
-    border: 1px solid #e7dfd2;
-    border-radius: 12px;
-
-    padding: 20px;
-    margin-bottom: 15px;
-    text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
+  background: white;
+  border: 1px solid #e7dfd2;
+  border-radius: 12px;
+  text-align: left;
 }
 
 .cart-item p {
-    color: #94723a;
-    margin: 8px 0 0;
+  color: #94723a;
+  margin: 8px 0 0;
 }
 
 .quantity-controls {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .quantity-controls button {
-    background-color: #172f27;
-    color: white;
-
-    border: none;
-    border-radius: 6px;
-
-    padding: 9px 12px;
-    cursor: pointer;
+  background: #172f27;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 12px;
+  cursor: pointer;
 }
 
 .quantity-controls button:hover {
-    background-color: #3b5c4b;
+  background: #3b5c4b;
 }
 
 .quantity-controls span {
-    font-weight: bold;
-    min-width: 20px;
-    text-align: center;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
 }
 
 .cart-summary {
-    margin: 25px auto;
-    font-size: 18px;
+  margin: 25px auto;
+  font-size: 18px;
 }
 
 .cart-summary h3,
 #cart-total {
-    color: #94723a;
+  color: #94723a;
 }
 
-#clear-cart {
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-
-/* ==========================================
-   10. LESSON 8 - WHATSAPP ORDER FORM
-========================================== */
+/* WHATSAPP ORDER */
 
 .order-form {
-    max-width: 600px;
-    margin: 45px auto 0;
-    padding: 30px;
-
-    background-color: #f7f3eb;
-    border: 1px solid #e7dfd2;
-    border-radius: 14px;
-
-    text-align: left;
+  max-width: 600px;
+  margin: 45px auto 0;
+  padding: 30px;
+  background: #f7f3eb;
+  border: 1px solid #e7dfd2;
+  border-radius: 14px;
+  text-align: left;
 }
 
 .order-form h3 {
-    color: #243b32;
-    font-size: 26px;
-    text-align: center;
+  font-size: 26px;
+  text-align: center;
 }
 
 .order-form > p {
-    color: #646a60;
-    text-align: center;
+  color: #646a60;
+  text-align: center;
 }
 
 .order-form label {
-    display: block;
-    margin: 20px 0 8px;
-    font-weight: bold;
+  display: block;
+  margin: 20px 0 8px;
+  font-weight: bold;
 }
 
 .order-form input,
 .order-form textarea {
-    width: 100%;
-    padding: 14px;
-
-    border: 1px solid #d7cdbb;
-    border-radius: 8px;
-
-    background-color: white;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d7cdbb;
+  border-radius: 8px;
+  background: white;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
 }
 
 .order-form textarea {
-    min-height: 120px;
-    resize: vertical;
+  min-height: 120px;
+  resize: vertical;
 }
 
 .whatsapp-button {
-    display: block;
-    width: 100%;
-    margin-top: 25px;
-
-    background-color: #1f7a50;
-    color: white;
-
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+  display: block;
+  width: 100%;
+  margin-top: 25px;
+  background: #1f7a50;
+  color: white;
+  font-size: 16px;
 }
 
 .whatsapp-button:hover {
-    background-color: #17613f;
+  background: #17613f;
 }
 
 #order-feedback {
-    color: #9a472d;
-    font-size: 14px;
-    text-align: center;
+  color: #9a472d;
+  font-size: 14px;
+  text-align: center;
 }
 
-
-/* ==========================================
-   11. FOOTER
-========================================== */
-
-footer {
-    background-color: #172f27;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-
-footer p {
-    margin: 0;
-    font-size: 14px;
-}
-
-
-/* ==========================================
-   12. LESSON 10 - PRODUCT DETAILS POPUP
-========================================== */
-
-/* View Details button */
+/* PRODUCT DETAILS BUTTON */
 
 .details-button {
-    display: inline-block;
-    padding: 12px 18px;
-    margin: 5px 8px 5px 0;
-
-    background-color: transparent;
-    color: #172f27;
-
-    border: 1px solid #172f27;
-    border-radius: 30px;
-
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-
-    cursor: pointer;
-    transition: all 0.3s;
+  display: inline-block;
+  padding: 12px 18px;
+  margin: 5px 8px 5px 0;
+  background: transparent;
+  color: #172f27;
+  border: 1px solid #172f27;
+  border-radius: 30px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .details-button:hover {
-    background-color: #172f27;
-    color: white;
+  background: #172f27;
+  color: white;
 }
 
-/* Keep modal hidden until JavaScript opens it */
-
-.product-modal[hidden] {
-    display: none !important;
-}
-
-/* Dark overlay behind popup */
+/* MODAL */
 
 .product-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 20px;
-
-    background-color: rgba(0, 0, 0, 0.65);
-
-    overflow-y: auto;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  overflow-y: auto;
 }
-
-/* Popup content */
 
 .modal-content {
-    position: relative;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-
-    width: 100%;
-    max-width: 850px;
-    max-height: calc(100vh - 40px);
-
-    margin: auto;
-    padding: 30px;
-
-    background-color: #fffdf9;
-    border-radius: 16px;
-
-    overflow-y: auto;
-
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 850px;
+  max-height: calc(100vh - 40px);
+  margin: auto;
+  padding: 30px;
+  background: #fffdf9;
+  border-radius: 16px;
+  overflow-y: auto;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
 }
-
-/* Large product image */
 
 #modal-image {
-    display: block;
-    width: 100%;
-    height: 350px;
-
-    object-fit: cover;
-    border-radius: 12px;
+  display: block;
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
-/* Product information */
-
 .modal-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
 }
 
 .modal-info h2 {
-    color: #243b32;
-    font-size: 30px;
-    margin-bottom: 0;
+  color: #243b32;
+  font-size: 30px;
+  margin-bottom: 0;
 }
 
 #modal-description {
-    color: #646a60;
-    font-size: 16px;
+  color: #646a60;
 }
 
 #modal-price {
-    color: #94723a;
-    font-size: 25px;
+  color: #94723a;
+  font-size: 25px;
 }
 
 #modal-add-cart {
-    align-self: flex-start;
+  align-self: flex-start;
 }
-
-/* Close popup button */
 
 .close-modal {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-
-    width: 38px;
-    height: 38px;
-
-    background-color: #172f27;
-    color: white;
-
-    border: none;
-    border-radius: 50%;
-
-    font-size: 26px;
-    cursor: pointer;
-    z-index: 1;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  background: #172f27;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 2;
 }
-
-.close-modal:hover {
-    background-color: #3b5c4b;
-}
-
-/* Prevent scrolling behind popup */
 
 body.modal-open {
-    overflow: hidden;
+  overflow: hidden;
 }
 
+/* IMAGE GALLERY */
 
-/* ==========================================
-   13. RESPONSIVE DESIGN - TABLETS
-========================================== */
+.modal-gallery {
+  min-width: 0;
+}
+
+.gallery-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 12px 0;
+}
+
+.gallery-navigation button {
+  background: #172f27;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+}
+
+#gallery-status {
+  font-family: Arial, sans-serif;
+  color: #646a60;
+  font-size: 14px;
+}
+
+#gallery-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#gallery-thumbnails button {
+  width: 65px;
+  height: 65px;
+  padding: 2px;
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#gallery-thumbnails button.active {
+  border-color: #d6b474;
+}
+
+#gallery-thumbnails img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* FOOTER */
+
+footer {
+  background: #172f27;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* RESPONSIVE DESIGN */
 
 @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
+  .nav-links {
+    justify-content: center;
+    gap: 15px;
+  }
 
-    .nav-links {
-        justify-content: center;
-        gap: 15px;
-    }
+  .hero {
+    min-height: 350px;
+    padding: 45px 6%;
+  }
 
-    .hero {
-        min-height: 350px;
-        padding: 45px 6%;
-    }
+  .hero h1 {
+    font-size: 34px;
+  }
 
-    .hero h1 {
-        font-size: 34px;
-    }
+  .product-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-    .product-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .about {
-        grid-template-columns: 1fr;
-    }
+  .about {
+    grid-template-columns: 1fr;
+  }
 }
 
-
-/* ==========================================
-   14. RESPONSIVE DESIGN - MOBILE
-========================================== */
-
 @media (max-width: 650px) {
+  .modal-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
 
-    .modal-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 20px;
-    }
+  #modal-image {
+    height: 240px;
+  }
 
-    #modal-image {
-        height: 240px;
-    }
-
-    .modal-info h2 {
-        font-size: 25px;
-    }
-
-    #modal-add-cart {
-        width: 100%;
-    }
+  #modal-add-cart {
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .order-form {
+    padding: 20px;
+  }
 
-    .order-form {
-        padding: 20px;
-    }
+  .filter-buttons {
+    gap: 8px;
+  }
 
-    .shop-controls {
-        margin: 25px auto 30px;
-    }
-
-    #product-search {
-        padding: 13px 16px;
-        font-size: 14px;
-    }
-
-    .filter-buttons {
-        gap: 8px;
-    }
-
-    .filter-btn {
-        padding: 10px 14px;
-        font-size: 13px;
-    }
+  .filter-btn {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 480px) {
+  .product-container {
+    grid-template-columns: 1fr;
+  }
 
-    .product-container {
-        grid-template-columns: 1fr;
-    }
+  .product-card > img {
+    height: 250px;
+  }
 
-    .product-card img {
-        height: 250px;
-    }
-
-    .products h2,
-    .about h2,
-    .contact h2 {
-        font-size: 27px;
-    }
-
-    .hero h1 {
-        font-size: 30px;
-    }
+  .hero h1 {
+    font-size: 30px;
+  }
 }

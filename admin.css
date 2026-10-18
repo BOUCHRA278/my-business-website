@@ -1,0 +1,234 @@
+
+/* THE COZY TOUCH - ADMIN DASHBOARD */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f3eb;
+  color: #243b32;
+  font-family: Arial, sans-serif;
+}
+
+.admin-header {
+  background: #172f27;
+  color: white;
+  padding: 28px 7%;
+  text-align: center;
+}
+
+.admin-header a {
+  color: #e5c58a;
+  text-decoration: none;
+}
+
+.admin-header h1 {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.admin-header p {
+  color: #e5c58a;
+}
+
+.admin-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.admin-card {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.admin-card h2 {
+  font-family: Georgia, serif;
+  color: #172f27;
+}
+
+.admin-card p {
+  line-height: 1.6;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 18px 0 8px;
+}
+
+input:not([type="checkbox"]),
+textarea,
+select {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin-top: 7px;
+  border: 1px solid #d7cdbb;
+  border-radius: 8px;
+  background: #fffdf9;
+  color: #243b32;
+  font: inherit;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #d6b474;
+  outline-offset: 2px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.checkbox-label input {
+  width: auto;
+}
+
+.admin-button,
+.secondary-button {
+  padding: 13px 22px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-button {
+  background: #172f27;
+  color: white;
+}
+
+.admin-button:hover {
+  background: #345d4c;
+}
+
+.secondary-button {
+  background: #e8e1d5;
+  color: #172f27;
+}
+
+.secondary-button:hover {
+  background: #d6cbb9;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.form-actions,
+.admin-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.hint {
+  color: #6c7067;
+  font-size: 13px;
+}
+
+#save-message,
+#login-message {
+  min-height: 20px;
+  margin-top: 20px;
+  white-space: pre-wrap;
+  color: #345d4c;
+}
+
+.product-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 0;
+  border-bottom: 1px solid #e7dfd2;
+}
+
+.product-row img {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #f7f3eb;
+}
+
+.product-row .info {
+  flex: 1;
+  min-width: 120px;
+}
+
+.product-row .info strong {
+  font-size: 17px;
+  color: #172f27;
+}
+
+.product-row .info p {
+  font-size: 14px;
+  color: #6c7067;
+  margin: 7px 0 0;
+}
+
+.product-row button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 7px;
+  background: #172f27;
+  color: white;
+  cursor: pointer;
+}
+
+.product-row button:hover {
+  background: #345d4c;
+}
+
+.product-row .delete-button {
+  background: #a94343;
+}
+
+.product-row .delete-button:hover {
+  background: #872e2e;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .admin-header h1 {
+    font-size: 26px;
+  }
+
+  .admin-card {
+    padding: 20px;
+  }
+
+  .product-row {
+    flex-wrap: wrap;
+  }
+
+  .product-row .info {
+    flex-basis: calc(100% - 105px);
+  }
+
+  .form-actions button {
+    flex: 1;
+  }
+}

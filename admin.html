@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cozy Touch | Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <header class="admin-header">
+    <a href="index.html">← Back to Store</a>
+    <h1>The Cozy Touch</h1>
+    <p>Admin Dashboard</p>
+  </header>
+
+  <main class="admin-container">
+
+    <section id="login-panel" class="admin-card">
+      <h2>Admin Login</h2>
+      <p>Sign in to manage your products.</p>
+
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input id="email" type="email"
+               autocomplete="username" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password"
+               autocomplete="current-password" required>
+
+        <button type="submit" class="admin-button">
+          Sign In
+        </button>
+      </form>
+
+      <p id="login-message" role="status"></p>
+    </section>
+
+    <section id="admin-panel" hidden>
+
+      <div class="admin-card">
+
+        <div class="admin-heading">
+          <h2>Manage Products</h2>
+
+          <button id="logout" type="button"
+                  class="secondary-button">
+            Sign Out
+          </button>
+        </div>
+
+        <p>Add, edit, or remove products from your store.</p>
+
+        <form id="product-form">
+
+          <input id="product-id" type="hidden">
+
+          <label for="name">Product Name</label>
+          <input id="name" type="text"
+                 maxlength="100" required>
+
+          <label for="price">Price ($)</label>
+          <input id="price" type="number"
+                 min="0" max="100000"
+                 step="0.01" required>
+
+          <label for="category">Category</label>
+          <select id="category" required>
+            <option value="candles">Candles</option>
+            <option value="gypsum">Gypsum</option>
+            <option value="gifts">Gift Sets</option>
+          </select>
+
+          <label for="description">Product Description</label>
+          <textarea id="description"
+                    maxlength="2000"></textarea>
+
+          
+<label for="image-urls">Product Image URLs</label>
+
+<textarea
+  id="image-urls"
+  rows="5"
+  placeholder="Paste one image URL per line"
+  required
+></textarea>
+
+<p class="hint">
+  Upload images to your GitHub repository first.
+  Paste one image URL per line.
+  You can add up to 6 images per product.
+</p>
+
+
+         
+
+          <label class="checkbox-label">
+            <input id="published" type="checkbox" checked>
+            Publish product on website
+          </label>
+
+          <div class="form-actions">
+            <button id="save-product"
+                    type="submit"
+                    class="admin-button">
+              Save Product
+            </button>
+
+            <button id="cancel-edit"
+                    type="button"
+                    class="secondary-button">
+              Clear Form
+            </button>
+          </div>
+
+        </form>
+
+        <p id="save-message" role="status"></p>
+      </div>
+
+      <div class="admin-card">
+        <h2>Existing Products</h2>
+
+        <div id="admin-products">
+          <p>Loading products...</p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.uid == "LnHTX5SsPpcRFTGYDnuLGBzSGDl2";
+    }
+
+    match /products/{uid}/{fileName} {
+
+      allow read: if true;
+
+      allow create: if isAdmin()
+        && uid == request.auth.uid
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches(
+          'image/(jpeg|png|webp)'
+        );
+
+      allow update, delete: if false;
+    }
+
+    match /{path=**} {
+      allow read, write: if false;
+    }
+  }
+}
