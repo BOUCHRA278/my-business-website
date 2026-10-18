@@ -16,13 +16,16 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
 // YOUR FIREBASE CONFIGURATION
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyc-bVcFMQUDGobkvqfQy_lKRbjv0Nm_9K4",
+  apiKey: "AIzaSyC-bVcFMQUdG0bkvqfQy_lKRbjv0Nm_9K4",
   authDomain: "the-cozy-touch.firebaseapp.com",
+  databaseURL: "https://the-cozy-touch-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "the-cozy-touch",
   storageBucket: "the-cozy-touch.firebasestorage.app",
   messagingSenderId: "198877941259",
-  appId: "1:198877941259:web:c50fb63ca941659393810e"
+  appId: "1:198877941259:web:c50fb63ca941659393810e",
+  measurementId: "G-ZFNJMZKEQD"
 };
 
 // We will replace this after creating the admin account.
